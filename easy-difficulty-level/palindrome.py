@@ -45,21 +45,21 @@ class Solution:
   Continue the comparison until the middle of number is reached or all digits are compared
   '''
     def isPalindrome(self, x: int) -> bool:
-        d = 1
+        div_factor = 1
         if x < 0:
             return False
-        while abs(x // d) > 9:
-            d *= 10
-        print(d)
+        while abs(x // div_factor) > 9:
+            div_factor *= 10
+
         while (abs(x) > 9):
-            l = x // d
+            l = x // div_factor
             t = x % 10
 
             if (l != t):
                 return False
 
-            x = (x % d)//10
-            d = d/100
+            x = (x % div_factor)//10
+            d = div_factor/100
 
         return True
 
@@ -78,16 +78,16 @@ class Solution:
   
     def isPalindrome(self, x: int) -> bool:
         l = []
-        mf = 1
+        mul_factor = 1
         while x > 0:
-            l.append(x%10)
-            mf *= 10
+            l.append(x % 10)
+            mul_factor *= 10
             x //= 10
 
         y = 0
         while l:
-            mf /= 10
-            y += l.pop(0) * mf
+            mul_factor /= 10
+            y += l.pop(0) * mul_factor
 
         return x == y
 
@@ -98,19 +98,19 @@ class Solution:
         if(x == 0):
             return True
         
-        if(x < 0 or x%10 == 0):
+        if(x < 0 or x % 10 == 0):
             return False
         
         temp = 0
-        preX = x
+        prev_x = x
         while (x > temp):
-            pop = x%10
-            preX = x
+            pop = x % 10
+            prev_x = x
             x /= 10
 
-            temp = temp*10 + pop;
+            temp = temp * 10 + pop;
         
-        if(x == temp or preX == temp):
+        if(x == temp or prev_x == temp):
             return True
         else:
             return False
